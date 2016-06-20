@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.neocities.autoart.ballbounce.Menu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_title"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:id="@+id/menu_title"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_title"
+        android:background="#b1e5ff"
+        android:text="@string/normal"
+        android:layout_marginTop="20sp"
+        android:id="@+id/normal_mode"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/normal_mode"
+        android:background="#ffdfb1"
+        android:text="@string/crazy_gravity"
+        android:layout_marginTop="20sp"
+        android:id="@+id/crazy_gravity_mode"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crazy_gravity_mode"
+        android:background="#ebc4ff"
+        android:layout_marginTop="20sp"
+        android:text="@string/colour_changing"
+        android:id="@+id/colour_changing_mode"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/colour_changing_mode"
+        android:background="#c7ffc4"
+        android:layout_marginTop="20sp"
+        android:text="@string/oscillation"
+        android:id="@+id/oscillation_mode"
+
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/oscillation_mode"
+        android:layout_marginTop="20sp"
+        android:text="@string/bw_mode"
+        android:background="#dadada"
+        android:id="@+id/bw_mode"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bw_mode"
+        android:layout_marginTop="20sp"
+        android:text="@string/flip_mode"
+        android:background="#faa0a1"
+        android:id="@+id/flip_mode"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flip_mode"
+        android:layout_marginTop="20sp"
+        android:text="@string/random_mode"
+        android:background="#faf7a0"
+        android:id="@+id/random_mode"
+        />
+
+
+</RelativeLayout>

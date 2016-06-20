@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ball Bounce</string>
+    <string name="menu_title">Main menu</string>
+    <string name="normal">Play normal mode</string>
+    <string name="crazy_gravity">Play crazy gravity mode</string>
+    <string name="colour_changing">Play colour changing mode</string>
+    <string name="oscillation">Play oscillation mode</string>
+    <string name="bw_mode">Play black &amp; white mode</string>
+    <string name="flip_mode">Play flip mode</string>
+    <string name="random_mode">Play a random mode!</string>
+</resources>
