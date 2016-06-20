@@ -147,7 +147,7 @@ public class CanvasView extends View
 
         Paint paint = new Paint();
 
-        for (int i = 0; i < ballPositions.size(); i++)
+        for (int i = 0; i < ballPositions.size(); i+=3)
         {
             double[] ballPosition = ballPositions.get(i);
 
