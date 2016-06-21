@@ -97,6 +97,17 @@ public class Menu extends AppCompatActivity
             }
         });
 
+        Button highscores = (Button) findViewById(R.id.highscores);
+        highscores.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getApplicationContext(), Highscores.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

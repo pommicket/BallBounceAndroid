@@ -8,4 +8,5 @@
     <string name="bw_mode">Play black &amp; white mode</string>
     <string name="flip_mode">Play flip mode</string>
     <string name="random_mode">Play a random mode!</string>
+    <string name="highscores">View High scores!</string>
 </resources>

@@ -1,8 +1,10 @@
 package org.neocities.autoart.ballbounce;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 
 import java.util.Date;
@@ -32,13 +34,13 @@ public class MoveBall implements Runnable
         }
 
         if (Game.MODE != Game.CRAZY_GRAVITY_MODE && Game.MODE != Game.FLIP_MODE)
-            gravity = 1;
+            gravity = 0.0007*cv.w;
         else if (Game.MODE == Game.CRAZY_GRAVITY_MODE)
             gravity = Math.abs(cv.w*(t*a*Math.sin(b*t)));
         else if (Game.MODE == Game.FLIP_MODE && (t/500) % 2 == 0)
-            gravity = 1;
+            gravity = 0.0007*cv.w;
         else if (Game.MODE == Game.FLIP_MODE)
-            gravity = -1;
+            gravity = -0.0007*cv.w;
 
         cv.currentBallPosition[0] += ballVel[0];
         cv.currentBallPosition[1] += ballVel[1];
@@ -47,6 +49,16 @@ public class MoveBall implements Runnable
         if (cv.currentBallPosition[1] > cv.h || cv.currentBallPosition[1] < 0 || cv.currentBallPosition[0] > cv.w || cv.currentBallPosition[0] < 0)
         {
             running = false;
+            SharedPreferences prefs = CanvasView.activity.getSharedPreferences("ballBounceHighscores", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+
+            int record = prefs.getInt("mode" + Game.MODE, -1);
+            if (CanvasView.score > record)
+                editor.putInt("mode" + Game.MODE, CanvasView.score);
+
+            editor.apply();
+
             new AlertDialog.Builder(CanvasView.activity)
                     .setTitle("You lost!")
                     .setMessage("Score: " + CanvasView.score)
@@ -71,8 +83,10 @@ public class MoveBall implements Runnable
             {
                 ballVel[1] += gravity;
                 cv.ballPositions.add(cv.currentBallPosition.clone());
+                t++;
                 cv.invalidate();
                 cv.handler.postDelayed(this, 10);
+
                 return;
             }
 

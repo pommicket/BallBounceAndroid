@@ -13,6 +13,8 @@ public class Game extends AppCompatActivity
     public static final int BW_MODE = 4;
     public static final int FLIP_MODE = 5;
     public static final int NUM_MODES = 6;
+    public static final String[] MODE_NAMES = {"Normal mode", "Crazy gravity mode", "Colour changing mode", "Oscillation mode",
+                                                "Black & white mode", "Flip mode"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

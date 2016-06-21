@@ -1,6 +1,7 @@
 package org.neocities.autoart.ballbounce;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -35,6 +36,9 @@ public class CanvasView extends View
 
     MoveBall moveBall = new MoveBall();
 
+    public Bitmap bmp;
+    public Canvas bmpCanvas;
+
 
     public CanvasView(Context context)
     {
@@ -64,6 +68,8 @@ public class CanvasView extends View
         moveBall.t = 0;
         moveBall.a = Math.random()*0.00001;
         moveBall.b = Math.random()*0.002;
+
+
 
         colours = new ArrayList<>();
 
@@ -135,6 +141,9 @@ public class CanvasView extends View
         ballSize = w*0.05;
         paddleSize = w*0.2;
 
+        bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        bmpCanvas = new Canvas(bmp);
+
 
     }
 
@@ -147,46 +156,46 @@ public class CanvasView extends View
 
         Paint paint = new Paint();
 
-        for (int i = 0; i < ballPositions.size(); i+=3)
+
+        int i = moveBall.t;
+
+        if (colours.size() <= Math.ceil((double)i/100))
         {
-            double[] ballPosition = ballPositions.get(i);
+            int[] c = new int[3];
+            c[0] = (int)(Math.random()*255);
+            c[1] = (int)(Math.random()*255);
+            c[2] = (int)(Math.random()*255);
 
-            if (colours.size() <= Math.ceil((double)i/100))
-            {
-                int[] c = new int[3];
-                c[0] = (int)(Math.random()*255);
-                c[1] = (int)(Math.random()*255);
-                c[2] = (int)(Math.random()*255);
-
-                colours.add(c);
-            }
-
-            paint.setStyle(Paint.Style.FILL);
-            if (Game.MODE == Game.NORMAL_MODE || Game.MODE == Game.CRAZY_GRAVITY_MODE || Game.MODE == Game.FLIP_MODE)
-            {
-                paint.setARGB(255, 0, 0, 0);
-            }
-            else if (Game.MODE == Game.COLOUR_CHANGING_MODE)
-            {
-                paint.setARGB(255, colours.get(i / 100)[0], colours.get(i / 100)[1], colours.get(i / 100)[2]);
-            }
-            else if (Game.MODE == Game.OSCILLATION_MODE)
-            {
-                int val = (int)(255*Math.sin(0.001*i));
-                paint.setARGB(255, val, val, val);
-            }
-            else if (Game.MODE == Game.BW_MODE)
-            {
-                int val = 255*((i/500)%2);
-                paint.setARGB(255, val, val, val);
-            }
-            canvas.drawCircle((float) ballPosition[0], (float) ballPosition[1], (float) ballSize, paint);
+            colours.add(c);
         }
 
+        paint.setStyle(Paint.Style.FILL);
+        if (Game.MODE == Game.NORMAL_MODE || Game.MODE == Game.CRAZY_GRAVITY_MODE || Game.MODE == Game.FLIP_MODE)
+        {
+            paint.setARGB(255, 0, 0, 0);
+        }
+        else if (Game.MODE == Game.COLOUR_CHANGING_MODE)
+        {
+            paint.setARGB(255, colours.get(i / 100)[0], colours.get(i / 100)[1], colours.get(i / 100)[2]);
+        }
+        else if (Game.MODE == Game.OSCILLATION_MODE)
+        {
+            int val = (int)(255*Math.sin(0.001*i));
+            paint.setARGB(255, val, val, val);
+        }
+        else if (Game.MODE == Game.BW_MODE)
+        {
+            int val = 255*((i/500)%2);
+            paint.setARGB(255, val, val, val);
+        }
+        bmpCanvas.drawCircle((float) currentBallPosition[0], (float) currentBallPosition[1], (float) ballSize, paint);
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setARGB(255, 0, 0, 255);
         paint.setStrokeWidth(10);
-        canvas.drawLine((float)(paddlePosition[0]-paddleSize/2),  (float)(paddlePosition[1]), (float)(paddlePosition[0]+paddleSize/2), (float)(paddlePosition[1]), paint);
+
+        canvas.drawBitmap(bmp, 0, 0, null);
+        canvas.drawLine((float) (paddlePosition[0] - paddleSize / 2), (float) (paddlePosition[1]), (float) (paddlePosition[0] + paddleSize / 2), (float) (paddlePosition[1]), paint);
+
     }
 }

@@ -9,6 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.neocities.autoart.ballbounce.Menu">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,6 +97,18 @@
         android:background="#faf7a0"
         android:id="@+id/random_mode"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/random_mode"
+        android:layout_marginTop="20sp"
+        android:text="@string/highscores"
+        android:background="#ffd7f0"
+        android:id="@+id/highscores"
+        />
+
+    </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
