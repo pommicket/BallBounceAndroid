@@ -180,7 +180,7 @@ public class CanvasView extends View
         }
         else if (Game.MODE == Game.OSCILLATION_MODE)
         {
-            int val = (int)(255*Math.sin(0.001*i));
+            int val = (int)(128*Math.sin(0.001*i)+127);
             paint.setARGB(255, val, val, val);
         }
         else if (Game.MODE == Game.BW_MODE)
